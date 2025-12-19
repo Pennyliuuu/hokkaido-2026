@@ -13,7 +13,6 @@
             --white: #ffffff;
             --shadow: 0 4px 15px rgba(0,0,0,0.05);
             --tag-stay: #fffcc4; /* 入住標籤黃 */
-            --tag-time: #eef9ff; /* 時間標籤藍 */
             --box-detail: #fff5f6; /* 活動細節粉 */
         }
 
@@ -57,11 +56,11 @@
             text-decoration: none; color: #2b67af; margin-bottom: 10px; font-weight: 500;
         }
 
-        /* 標籤與細節框樣式 */
-        .tag-time { background: var(--tag-time); color: var(--dark-blue); padding: 2px 8px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; margin-right: 5px; }
+        /* 標籤樣式 */
+        .text-time { color: var(--dark-blue); font-weight: bold; font-size: 0.95rem; margin-right: 3px; }
         .tag-stay { background: var(--tag-stay); color: #856404; padding: 2px 8px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; }
         .detail-box { background: var(--box-detail); padding: 12px; border-radius: 12px; margin-top: 8px; font-size: 0.9rem; border: 1px dashed #ffdce0; }
-        .map-link { color: var(--dark-blue); text-decoration: none; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 5px; }
+        .map-link { color: var(--dark-blue); text-decoration: none; font-size: 0.85rem; font-weight: bold; display: inline-block; margin-top: 5px; margin-bottom: 5px;}
 
         .timeline-item { border-left: 2px dashed var(--primary); padding: 0 0 25px 20px; position: relative; list-style: none; }
         .timeline-item::before { content: '❄️'; position: absolute; left: -11px; top: 0; font-size: 12px; background: var(--bg); }
@@ -74,7 +73,6 @@
         .nav-item.active { color: #2b67af; font-weight: bold; }
         .nav-icon { display: block; font-size: 1.5rem; margin-bottom: 2px; }
 
-        .btn { display: inline-block; padding: 8px 18px; background: var(--dark-blue); color: white; border-radius: 50px; text-decoration: none; font-size: 0.85rem; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -113,9 +111,18 @@
     <div class="card">
         <h2>🏨 住宿安排總覽</h2>
         <div style="font-size: 0.9rem;">
-            <p>3/13-17: <strong>Skye Niseko</strong></p>
-            <p>3/17-18: <strong>Dormy Inn Premium Otaru</strong></p>
-            <p>3/18-21: <strong>The Gate Hotel Sapporo</strong></p>
+            <p>
+                3/13-17: <strong>Skye Niseko</strong><br>
+                <a href="https://maps.app.goo.gl/96HByC2LzN6BpxfG8" target="_blank" class="map-link">📍 查看 Google Map</a>
+            </p>
+            <p>
+                3/17-18: <strong>Dormy Inn Premium Otaru</strong><br>
+                <a href="https://maps.app.goo.gl/uXv7m1zXG3dF7vM3A" target="_blank" class="map-link">📍 查看 Google Map</a>
+            </p>
+            <p>
+                3/18-21: <strong>The Gate Hotel Sapporo</strong><br>
+                <a href="https://maps.app.goo.gl/S49n77GfE9fMre5Z9" target="_blank" class="map-link">📍 查看 Google Map</a>
+            </p>
         </div>
     </div>
 
@@ -134,26 +141,26 @@
     <div class="card">
         <h2>⛷️ 3/13-3/17 二世谷滑雪</h2>
         <div class="timeline-item">
-            <span class="tag-time">3/13 (五)</span>
+            <span class="text-time">3/13 (五)</span>
             <div class="detail-box">
                 抵達 ➔ 附近超市採購<br>
                 <span class="tag-stay">入住 Skye Niseko</span><br>
-                <a href="https://www.google.com/maps/search/Skye+Niseko" target="_blank" class="map-link">📍 Google Map</a>
+                <a href="https://maps.app.goo.gl/96HByC2LzN6BpxfG8" target="_blank" class="map-link">📍 Google Map</a>
             </div>
         </div>
         <div class="timeline-item">
-            <span class="tag-time">3/14-16</span>
+            <span class="text-time">3/14-16</span>
             <div class="detail-box">
                 租借雪具 ➔ 滑雪全日<br>
                 午餐 TBC ➔ 享受飯店高級設施
             </div>
         </div>
         <div class="timeline-item">
-            <span class="tag-time">3/17 (二)</span>
+            <span class="text-time">3/17 (二)</span>
             <div class="detail-box">
-                <span class="tag-time">09:00</span> 吃早餐<br>
-                <span class="tag-time">11:00</span> 退房<br>
-                <span class="tag-time">12:00</span> 搭車 Uber 前往小樽 (約 1.5hr)
+                <span class="text-time">09:00</span> 吃早餐<br>
+                <span class="text-time">11:00</span> 退房<br>
+                <span class="text-time">12:00</span> 搭車 Uber 前往小樽 (約 1.5hr)
             </div>
         </div>
     </div>
@@ -163,10 +170,10 @@
     <div class="card">
         <h2>♨️ 3/17-3/18 放鬆小樽行</h2>
         <div class="timeline-item">
-            <span class="tag-time">3/17 (二)</span>
+            <span class="text-time">3/17 (二)</span>
             <div class="detail-box">
                 <span class="tag-stay">入住 Dormy Inn Premium Otaru</span><br>
-                <a href="https://www.google.com/maps/search/Dormy+Inn+Premium+Otaru" target="_blank" class="map-link">📍 Google Map</a>
+                <a href="https://maps.app.goo.gl/uXv7m1zXG3dF7vM3A" target="_blank" class="map-link">📍 Google Map</a>
                 <p style="margin: 10px 0 0;">
                 Snoopy 茶屋 / 小樽蒸汽鐘 / LeTAO總店 / 六花亭 / 小樽音樂盒堂 / 運河散步 / 體驗天然溫泉<br>
                 <small>午餐/晚餐 TBC</small>
@@ -174,16 +181,16 @@
             </div>
         </div>
         <div class="timeline-item">
-            <span class="tag-time">3/18 (三)</span>
+            <span class="text-time">3/18 (三)</span>
             <div class="detail-box">
-                <span class="tag-time">09:00</span> 吃早餐<br>
-                <span class="tag-time">10:30</span> 退房 (行李寄放飯店)<br>
-                <span class="tag-time">11:00</span> 出發水族館<br>
+                <span class="text-time">09:00</span> 吃早餐<br>
+                <span class="text-time">10:30</span> 退房 (行李寄放飯店)<br>
+                <span class="text-time">11:00</span> 出發水族館<br>
                 🚌 公車：小樽站前巴士總站 (#10) ➔ 終點站 (25分)<br>
                 🚕 Uber：約 15-20 分鐘<br>
                 🐧 企鵝走路：11:30、12:40、14:40<br>
-                <span class="tag-time">16:00</span> 返回小樽拿行李<br>
-                <span class="tag-time">17:00</span> 搭機場快線前往札幌 (1hr)<br>
+                <span class="text-time">16:00</span> 返回小樽拿行李<br>
+                <span class="text-time">17:00</span> 搭機場快線前往札幌 (1hr)<br>
                 <span class="tag-stay">入住 The Gate Hotel Sapporo</span>
             </div>
         </div>
@@ -194,27 +201,27 @@
     <div class="card">
         <h2>🏙️ 3/18-3/20 漫遊札幌市</h2>
         <div class="timeline-item">
-            <span class="tag-time">3/18 (三)</span>
+            <span class="text-time">3/18 (三)</span>
             <div class="detail-box">
                 <span class="tag-stay">入住 The Gate Hotel Sapporo</span><br>
-                <a href="https://www.google.com/maps/search/The+Gate+Hotel+Sapporo+by+Hulic" target="_blank" class="map-link">📍 Google Map</a><br>
+                <a href="https://maps.app.goo.gl/S49n77GfE9fMre5Z9" target="_blank" class="map-link">📍 Google Map</a><br>
                 札幌車站周邊逛街 / 晚餐 TBC
             </div>
         </div>
         <div class="timeline-item">
-            <span class="tag-time">3/19 (四)</span>
+            <span class="text-time">3/19 (四)</span>
             <div class="detail-box">
-                <span class="tag-time">10:00</span> 吃早餐<br>
-                <span class="tag-time">11:30</span> 北海道大學散步 (銀杏大道/校園博物館)<br>
+                <span class="text-time">10:00</span> 吃早餐<br>
+                <span class="text-time">11:30</span> 北海道大學散步 (銀杏大道/校園博物館)<br>
                 下午自由活動：大通公園、狸小路、Pole Town 地下街<br>
                 <span style="color:#d63384; font-weight:bold;">晚餐：成吉思汗烤羊肉</span>
             </div>
         </div>
         <div class="timeline-item">
-            <span class="tag-time">3/20 (五)</span>
+            <span class="text-time">3/20 (五)</span>
             <div class="detail-box">
-                <span class="tag-time">08:00</span> 吃早餐<br>
-                <span class="tag-time">09:30</span> 出發円山動物園 (🚇 大通➔圓山公園)<br>
+                <span class="text-time">08:00</span> 吃早餐<br>
+                <span class="text-time">09:30</span> 出發円山動物園 (🚇 大通➔圓山公園)<br>
                 討論：護國神社 (步行5-10分) 或 動物園<br>
                 傍晚：白色戀人公園 (巧克力工廠/購物)<br>
                 午餐/晚餐 TBC
