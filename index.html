@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 北海道滑雪之旅</title>
+    <style>
+        :root {
+            --primary: #2b67af; /* 雪地深藍 */
+            --accent: #f39c12; /* 飛行橘 */
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        body {
+            margin: 0; font-family: -apple-system, "Noto Sans TC", sans-serif;
+            background: var(--bg); color: #333; line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* 頂部 Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #5dade2);
+            color: white; padding: 40px 20px; text-align: center;
+            border-radius: 0 0 30px 30px; box-shadow: var(--shadow);
+        }
+
+        .logo { font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* 內容區塊控制 */
+        .page { display: none; padding: 15px; animation: fadeIn 0.3s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 卡片與時間軸 */
+        .card {
+            background: var(--white); border-radius: 15px; padding: 20px;
+            margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        h2 { color: var(--primary); font-size: 1.2rem; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .timeline { position: relative; padding-left: 20px; }
+        .timeline-item { border-left: 2px solid #ddd; padding: 0 0 20px 20px; position: relative; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -7px; top: 5px;
+            width: 12px; height: 12px; border-radius: 50%; background: var(--primary);
+        }
+        .time { font-weight: bold; color: var(--primary); font-size: 0.9rem; display: block; margin-bottom: 5px; }
+
+        /* 底部導航 */
+        .nav {
+            position: fixed; bottom: 0; width: 100%; background: rgba(255,255,255,0.98);
+            display: flex; border-top: 1px solid #eee; backdrop-filter: blur(10px); z-index: 1000;
+        }
+        .nav-item {
+            flex: 1; text-align: center; padding: 12px 0;
+            color: #888; text-decoration: none; font-size: 0.65rem;
+        }
+        .nav-item.active { color: var(--primary); font-weight: bold; }
+        .nav-icon { display: block; font-size: 1.4rem; margin-bottom: 2px; }
+
+        .btn {
+            display: inline-block; padding: 8px 15px; background: var(--primary);
+            color: white; border-radius: 8px; text-decoration: none; font-size: 0.8rem; margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">❄️✈️⛷️</div>
+    <h1 style="margin:0; font-size: 1.5rem;">2026 北海道滑雪之旅</h1>
+    <p style="opacity: 0.9; margin: 5px 0 0;">3/13 - 3/21 完整手冊</p>
+</header>
+
+<div id="home" class="page active">
+    <div class="card">
+        <h2>🏠 旅程概覽</h2>
+        <p>🗓️ <strong>日期：</strong>2026/3/13 - 3/21</p>
+        <p>📍 <strong>地點：</strong>二世谷、札幌、小樽</p>
+        <p>🌡️ <strong>氣溫：</strong>-5°C ~ 5°C (春雪季)</p>
+    </div>
+    <div class="card">
+        <h2>🏨 住宿資訊</h2>
+        <p><strong>3/13-3/17:</strong> 二世谷雪場飯店</p>
+        <p><strong>3/17-3/21:</strong> 札幌市中心飯店</p>
+        <a href="https://www.google.com/maps" target="_blank" class="btn">📍 開啟導航</a>
+    </div>
+</div>
+
+<div id="prep" class="page">
+    <div class="card">
+        <h2>📋 裝備清單</h2>
+        <label><input type="checkbox"> 雪衣/雪褲 (防水)</label><br>
+        <label><input type="checkbox"> 滑雪護目鏡 & 手套</label><br>
+        <label><input type="checkbox"> 羊毛襪 & 發熱衣</label><br>
+        <label><input type="checkbox"> 國際駕照 & 護照</label>
+    </div>
+    <div class="card">
+        <h2>📂 必要文件</h2>
+        <p>✅ Visit Japan Web QR碼</p>
+        <p>✅ 旅遊保險單據</p>
+    </div>
+</div>
+
+<div id="itA" class="page">
+    <div class="card">
+        <h2>📍 3/13 - 3/17 滑雪季</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="time">3/13 (五)</span>
+                抵達新千歲機場 ➔ 搭乘巴士前往二世谷 ➔ 飯店 Check-in
+            </div>
+            <div class="timeline-item">
+                <span class="time">3/14 - 3/16</span>
+                全日滑雪訓練 ➔ 晚上溫泉與燒肉饗宴
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="itB" class="page">
+    <div class="card">
+        <h2>♨️ 3/17 - 3/18 溫泉漫遊</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="time">3/17 (二)</span>
+                離開雪場 ➔ 前往定山溪/登別 ➔ 入住溫泉旅館
+            </div>
+            <div class="timeline-item">
+                <span class="time">3/18 (三)</span>
+                溫泉街散策 ➔ 地獄谷巡禮 ➔ 前往札幌市區
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="itC" class="page">
+    <div class="card">
+        <h2>🛍️ 3/18 - 3/20 札幌與小樽</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="time">3/19 (四)</span>
+                小樽一日遊：小樽運河、音樂盒堂、北菓樓泡芙
+            </div>
+            <div class="timeline-item">
+                <span class="time">3/20 (五)</span>
+                札幌市區：狸小路補貨藥妝、成吉思汗烤羊肉
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="itD" class="page">
+    <div class="card">
+        <h2>✈️ 3/21 (六) 最後衝刺</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="time">10:00</span>
+                抵達新千歲機場 ➔ 國內線 3F 伴手禮最後補齊
+            </div>
+            <div class="timeline-item">
+                <span class="time">12:00</span>
+                機場拉麵道場午餐 ➔ 辦理登機返國
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="nav">
+    <a href="javascript:void(0)" class="nav-item active" onclick="showPage('home', this)">
+        <span class="nav-icon">🏠</span>主頁
+    </a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('prep', this)">
+        <span class="nav-icon">📋</span>準備
+    </a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itA', this)">
+        <span class="nav-icon">⛷️</span>3/13-17
+    </a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itB', this)">
+        <span class="nav-icon">♨️</span>3/17-18
+    </a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itC', this)">
+        <span class="nav-icon">🛍️</span>3/18-20
+    </a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itD', this)">
+        <span class="nav-icon">✈️</span>3/21
+    </a>
+</nav>
+
+<script>
+    function showPage(pageId, elmnt) {
+        // 1. 隱藏所有頁面
+        var pages = document.getElementsByClassName("page");
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].classList.remove("active");
+        }
+        // 2. 顯示點選的頁面
+        var targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            targetPage.classList.add("active");
+        }
+
+        // 3. 更新導航列狀態
+        var navItems = document.getElementsByClassName("nav-item");
+        for (var i = 0; i < navItems.length; i++) {
+            navItems[i].classList.remove("active");
+        }
+        elmnt.classList.add("active");
+        
+        // 4. 滾動回頂部
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
