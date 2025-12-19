@@ -6,46 +6,60 @@
     <title>2026 北海道滑雪之旅</title>
     <style>
         :root {
-            --primary: #2b67af; /* 雪地深藍 */
-            --accent: #f39c12; /* 飛行橘 */
-            --bg: #f8f9fa;
+            --primary: #c4f0fd; /* 淺天空藍 */
+            --accent: #f7d8d9;  /* 櫻花粉 */
+            --dark-blue: #2b67af;
+            --bg: #fdfdfd;
             --white: #ffffff;
-            --shadow: 0 4px 10px rgba(0,0,0,0.1);
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         body {
-            margin: 0; font-family: -apple-system, "Noto Sans TC", sans-serif;
-            background: var(--bg); color: #333; line-height: 1.6;
-            padding-bottom: 80px;
+            margin: 0; font-family: -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: var(--bg); color: #444; line-height: 1.6;
+            padding-bottom: 90px;
         }
 
         /* 頂部 Header */
         header {
-            background: linear-gradient(135deg, var(--primary), #5dade2);
-            color: white; padding: 40px 20px; text-align: center;
-            border-radius: 0 0 30px 30px; box-shadow: var(--shadow);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #555; padding: 40px 20px; text-align: center;
+            border-radius: 0 0 40px 40px; box-shadow: var(--shadow);
         }
 
-        .logo { font-size: 2.5rem; margin-bottom: 10px; }
+        .logo { font-size: 2.8rem; margin-bottom: 10px; }
+        h1 { margin: 0; font-size: 1.5rem; letter-spacing: 1px; color: #2b67af; }
+        .sub-header { margin: 8px 0; font-size: 0.9rem; opacity: 0.8; font-weight: bold; }
 
-        /* 內容區塊控制 */
-        .page { display: none; padding: 15px; animation: fadeIn 0.3s ease; }
+        /* 倒數計時器 */
+        #countdown {
+            background: rgba(255, 255, 255, 0.6);
+            display: inline-block; padding: 8px 15px; border-radius: 20px;
+            margin-top: 15px; font-weight: bold; font-size: 0.95rem; color: #d63384;
+        }
+
+        /* 內容區塊 */
+        .page { display: none; padding: 15px; animation: fadeIn 0.4s ease; }
         .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* 卡片與時間軸 */
+        /* 卡片設計 */
         .card {
-            background: var(--white); border-radius: 15px; padding: 20px;
-            margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: var(--white); border-radius: 20px; padding: 20px;
+            margin-bottom: 18px; box-shadow: var(--shadow); border: 1px solid rgba(196, 240, 253, 0.3);
         }
-        h2 { color: var(--primary); font-size: 1.2rem; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .timeline { position: relative; padding-left: 20px; }
-        .timeline-item { border-left: 2px solid #ddd; padding: 0 0 20px 20px; position: relative; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: -7px; top: 5px;
-            width: 12px; height: 12px; border-radius: 50%; background: var(--primary);
+        h2 { color: var(--dark-blue); font-size: 1.1rem; margin-top: 0; border-left: 5px solid var(--primary); padding-left: 10px; margin-bottom: 15px; }
+
+        /* 資訊清單樣式 */
+        .info-item { margin-bottom: 12px; font-size: 0.95rem; }
+        .info-label { font-weight: bold; color: #777; font-size: 0.85rem; display: block; }
+        
+        /* 天氣按鈕 */
+        .weather-btn {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #f0faff; padding: 12px; border-radius: 12px;
+            text-decoration: none; color: #2b67af; margin-bottom: 10px; font-weight: 500;
         }
-        .time { font-weight: bold; color: var(--primary); font-size: 0.9rem; display: block; margin-bottom: 5px; }
 
         /* 底部導航 */
         .nav {
@@ -54,161 +68,151 @@
         }
         .nav-item {
             flex: 1; text-align: center; padding: 12px 0;
-            color: #888; text-decoration: none; font-size: 0.65rem;
+            color: #aaa; text-decoration: none; font-size: 0.65rem;
         }
-        .nav-item.active { color: var(--primary); font-weight: bold; }
-        .nav-icon { display: block; font-size: 1.4rem; margin-bottom: 2px; }
+        .nav-item.active { color: #2b67af; font-weight: bold; }
+        .nav-icon { display: block; font-size: 1.5rem; margin-bottom: 2px; }
 
         .btn {
-            display: inline-block; padding: 8px 15px; background: var(--primary);
-            color: white; border-radius: 8px; text-decoration: none; font-size: 0.8rem; margin-top: 10px;
+            display: inline-block; padding: 8px 18px; background: var(--dark-blue);
+            color: white; border-radius: 50px; text-decoration: none; font-size: 0.85rem; margin-top: 5px;
         }
+        .timeline-item { border-left: 2px dashed var(--primary); padding: 0 0 20px 20px; position: relative; }
+        .timeline-item::before { content: '❄️'; position: absolute; left: -11px; top: 0; font-size: 12px; background: var(--bg); }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">❄️✈️⛷️</div>
-    <h1 style="margin:0; font-size: 1.5rem;">2026 北海道滑雪之旅</h1>
-    <p style="opacity: 0.9; margin: 5px 0 0;">3/13 - 3/21 完整手冊</p>
+    <div class="logo">✈️❄️⛷️</div>
+    <h1>2026 北海道滑雪之旅</h1>
+    <p class="sub-header">3/13 - 3/21 ｜ 滑雪、美食、伴手禮</p>
+    <div id="countdown">載入中...</div>
 </header>
 
 <div id="home" class="page active">
     <div class="card">
-        <h2>🏠 旅程概覽</h2>
-        <p>🗓️ <strong>日期：</strong>2026/3/13 - 3/21</p>
-        <p>📍 <strong>地點：</strong>二世谷、札幌、小樽</p>
-        <p>🌡️ <strong>氣溫：</strong>-5°C ~ 5°C (春雪季)</p>
+        <h2>✈️ 航班資訊</h2>
+        <div class="info-item">
+            <span class="info-label">3/13 去程 BR0116</span>
+            TPE 09:30 ➔ CTS 14:05
+        </div>
+        <div class="info-item">
+            <span class="info-label">3/21 回程 BR0115</span>
+            CTS 15:20 ➔ TPE 19:05
+        </div>
     </div>
-    <div class="card">
-        <h2>🏨 住宿資訊</h2>
-        <p><strong>3/13-3/17:</strong> 二世谷雪場飯店</p>
-        <p><strong>3/17-3/21:</strong> 札幌市中心飯店</p>
-        <a href="https://www.google.com/maps" target="_blank" class="btn">📍 開啟導航</a>
-    </div>
-</div>
 
-<div id="prep" class="page">
     <div class="card">
-        <h2>📋 裝備清單</h2>
-        <label><input type="checkbox"> 雪衣/雪褲 (防水)</label><br>
-        <label><input type="checkbox"> 滑雪護目鏡 & 手套</label><br>
-        <label><input type="checkbox"> 羊毛襪 & 發熱衣</label><br>
-        <label><input type="checkbox"> 國際駕照 & 護照</label>
+        <h2>🌦️ 氣象快速偵測</h2>
+        <a href="https://www.google.com/search?q=Niseko+Weather+3/13" target="_blank" class="weather-btn">
+            <span>二世谷 (3/13-3/17)</span> <span>🔍 查詢</span>
+        </a>
+        <a href="https://www.google.com/search?q=Otaru+Weather+3/17" target="_blank" class="weather-btn">
+            <span>小樽市 (3/17-3/18)</span> <span>🔍 查詢</span>
+        </a>
+        <a href="https://www.google.com/search?q=Sapporo+Weather+3/18" target="_blank" class="weather-btn">
+            <span>札幌市 (3/18-3/21)</span> <span>🔍 查詢</span>
+        </a>
     </div>
+
     <div class="card">
-        <h2>📂 必要文件</h2>
-        <p>✅ Visit Japan Web QR碼</p>
-        <p>✅ 旅遊保險單據</p>
+        <h2>🏨 住宿安排</h2>
+        <div class="info-item" style="margin-bottom: 20px;">
+            <span class="info-label">3/13 - 3/17 (二世谷)</span>
+            <strong>Skye Niseko</strong><br>
+            <span style="font-size: 0.8rem; color: #888;">〒044-0080 北海道虻田郡倶知安町 ニセコひらふ1条3丁目11-4</span><br>
+            <a href="tel:+81136556414" style="color: #2b67af; text-decoration: none;">📞 +81 136-55-6414</a><br>
+            <a href="https://www.google.com/maps/search/?api=1&query=Skye+Niseko" target="_blank" class="btn">📍 地圖導航</a>
+        </div>
+        <div class="info-item">
+            <span class="info-label">3/17 - 3/18 (小樽)</span>
+            <strong>Dormy Inn Premium Otaru</strong><br>
+            <span style="font-size: 0.8rem; color: #888;">〒047-0032 北海道小樽市稲穂3丁目9-1</span><br>
+            <a href="tel:+81134215489" style="color: #2b67af; text-decoration: none;">📞 +81 134-21-5489</a><br>
+            <a href="https://www.google.com/maps/search/?api=1&query=Dormy+Inn+Premium+Otaru" target="_blank" class="btn">📍 地圖導航</a>
+        </div>
     </div>
 </div>
 
 <div id="itA" class="page">
     <div class="card">
-        <h2>📍 3/13 - 3/17 滑雪季</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="time">3/13 (五)</span>
-                抵達新千歲機場 ➔ 搭乘巴士前往二世谷 ➔ 飯店 Check-in
-            </div>
-            <div class="timeline-item">
-                <span class="time">3/14 - 3/16</span>
-                全日滑雪訓練 ➔ 晚上溫泉與燒肉饗宴
-            </div>
-        </div>
+        <h2>⛷️ 3/13-3/17 二世谷滑雪</h2>
+        <div class="timeline-item">3/13 (五) 抵達、飯店 Check-in、租借雪具</div>
+        <div class="timeline-item">3/14 (六) 滑雪全日、Grand Hirafu 探索</div>
+        <div class="timeline-item">3/15 (日) 滑雪全日、二世谷溫泉、下午茶</div>
+        <div class="timeline-item">3/16 (一) 滑雪全日、慶功晚宴 (燒肉/火鍋)</div>
+        <div class="timeline-item">3/17 (二) 晨間最後一滑、辦理退房</div>
     </div>
 </div>
 
 <div id="itB" class="page">
     <div class="card">
-        <h2>♨️ 3/17 - 3/18 溫泉漫遊</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="time">3/17 (二)</span>
-                離開雪場 ➔ 前往定山溪/登別 ➔ 入住溫泉旅館
-            </div>
-            <div class="timeline-item">
-                <span class="time">3/18 (三)</span>
-                溫泉街散策 ➔ 地獄谷巡禮 ➔ 前往札幌市區
-            </div>
-        </div>
+        <h2>♨️ 3/17-3/18 放鬆小樽行</h2>
+        <div class="timeline-item">3/17 (二) 抵達小樽、入住 Dormy Inn、晚間運河散步</div>
+        <div class="timeline-item">3/18 (三) 小樽音樂盒堂、堺町通散策、北菓樓/LeTAO</div>
     </div>
 </div>
 
 <div id="itC" class="page">
     <div class="card">
-        <h2>🛍️ 3/18 - 3/20 札幌與小樽</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="time">3/19 (四)</span>
-                小樽一日遊：小樽運河、音樂盒堂、北菓樓泡芙
-            </div>
-            <div class="timeline-item">
-                <span class="time">3/20 (五)</span>
-                札幌市區：狸小路補貨藥妝、成吉思汗烤羊肉
-            </div>
-        </div>
+        <h2>🏙️ 3/18-3/20 漫遊札幌市</h2>
+        <div class="timeline-item">3/18 (三) 下午抵達札幌、大通公園散步</div>
+        <div class="timeline-item">3/19 (四) 札幌市區採購、狸小路、成吉思汗烤肉</div>
+        <div class="timeline-item">3/20 (五) 莫埃來沼公園或白色戀人工廠、最後補貨</div>
     </div>
 </div>
 
 <div id="itD" class="page">
     <div class="card">
-        <h2>✈️ 3/21 (六) 最後衝刺</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="time">10:00</span>
-                抵達新千歲機場 ➔ 國內線 3F 伴手禮最後補齊
-            </div>
-            <div class="timeline-item">
-                <span class="time">12:00</span>
-                機場拉麵道場午餐 ➔ 辦理登機返國
-            </div>
+        <h2>✈️ 3/21 歸途與機場採購</h2>
+        <div class="card" style="background: #fff9f9; border: 1px dashed #ffcaca;">
+            <strong>新千歲機場大採買：</strong><br>
+            1. 國內線 2F 伴手禮區 (六花亭、北菓樓)<br>
+            2. 3F 哆啦A夢區、Royce' 巧克力工廠<br>
+            3. 拉麵道場午餐
+        </div>
+        <div class="info-item" style="margin-top: 15px;">
+            <span class="info-label">回程航班 BR0115</span>
+            15:20 札幌 (CTS) ➔ 19:05 台北 (TPE)
         </div>
     </div>
 </div>
 
 <nav class="nav">
-    <a href="javascript:void(0)" class="nav-item active" onclick="showPage('home', this)">
-        <span class="nav-icon">🏠</span>主頁
-    </a>
-    <a href="javascript:void(0)" class="nav-item" onclick="showPage('prep', this)">
-        <span class="nav-icon">📋</span>準備
-    </a>
-    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itA', this)">
-        <span class="nav-icon">⛷️</span>3/13-17
-    </a>
-    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itB', this)">
-        <span class="nav-icon">♨️</span>3/17-18
-    </a>
-    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itC', this)">
-        <span class="nav-icon">🛍️</span>3/18-20
-    </a>
-    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itD', this)">
-        <span class="nav-icon">✈️</span>3/21
-    </a>
+    <a href="javascript:void(0)" class="nav-item active" onclick="showPage('home', this)"><span class="nav-icon">🏠</span>主頁</a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itA', this)"><span class="nav-icon">⛷️</span>3/13-17</a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itB', this)"><span class="nav-icon">♨️</span>3/17-18</a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itC', this)"><span class="nav-icon">🏙️</span>3/18-20</a>
+    <a href="javascript:void(0)" class="nav-item" onclick="showPage('itD', this)"><span class="nav-icon">✈️</span>3/21</a>
 </nav>
 
 <script>
-    function showPage(pageId, elmnt) {
-        // 1. 隱藏所有頁面
-        var pages = document.getElementsByClassName("page");
-        for (var i = 0; i < pages.length; i++) {
-            pages[i].classList.remove("active");
-        }
-        // 2. 顯示點選的頁面
-        var targetPage = document.getElementById(pageId);
-        if (targetPage) {
-            targetPage.classList.add("active");
+    // 倒數計時功能
+    function updateCountdown() {
+        const targetDate = new Date("2026/03/13 09:30:00").getTime();
+        const now = new Date().getTime();
+        const gap = targetDate - now;
+
+        if (gap < 0) {
+            document.getElementById("countdown").innerText = "出發啦！⛷️";
+            return;
         }
 
-        // 3. 更新導航列狀態
-        var navItems = document.getElementsByClassName("nav-item");
-        for (var i = 0; i < navItems.length; i++) {
-            navItems[i].classList.remove("active");
-        }
-        elmnt.classList.add("active");
-        
-        // 4. 滾動回頂部
+        const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+        const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("countdown").innerText = `距離出發還有：${d}天 ${h}時 ${m}分`;
+    }
+    setInterval(updateCountdown, 60000);
+    updateCountdown();
+
+    // 分頁切換功能
+    function showPage(pageId, elmnt) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        elmnt.classList.add('active');
         window.scrollTo(0,0);
     }
 </script>
