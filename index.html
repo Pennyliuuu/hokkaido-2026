@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 Hokkaido Ski Trip</title>
+    <title>2026 北海道滑雪之旅</title>
     <style>
         :root {
             --primary: #c4f0fd; /* 淺天空藍 */
@@ -22,18 +22,14 @@
 
         header {
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: #555; padding: 40px 20px; text-align: center;
+            color: #555; padding: 35px 20px; text-align: center;
             border-radius: 0 0 40px 40px; box-shadow: var(--shadow);
         }
-
-        .logo { font-size: 2.8rem; margin-bottom: 10px; }
-        h1 { margin: 0; font-size: 1.5rem; letter-spacing: 1px; color: #2b67af; }
-        .sub-header { margin: 8px 0; font-size: 0.9rem; opacity: 0.8; font-weight: bold; }
 
         #countdown {
             background: rgba(255, 255, 255, 0.6);
             display: inline-block; padding: 8px 15px; border-radius: 20px;
-            margin-top: 15px; font-weight: bold; font-size: 0.95rem; color: #d63384;
+            margin-top: 15px; font-weight: bold; font-size: 0.9rem; color: #d63384;
         }
 
         .page { display: none; padding: 15px; animation: fadeIn 0.4s ease; }
@@ -46,147 +42,162 @@
         }
         h2 { color: var(--dark-blue); font-size: 1.1rem; margin-top: 0; border-left: 5px solid var(--primary); padding-left: 10px; margin-bottom: 15px; }
 
-        .info-item { margin-bottom: 15px; font-size: 0.95rem; }
-        .info-label { font-weight: bold; color: #777; font-size: 0.85rem; display: block; }
-        
-        /* 氣象嵌入容器 */
+        .info-label { font-weight: bold; color: #777; font-size: 0.8rem; display: block; }
         .weather-box { overflow: hidden; border-radius: 12px; margin-bottom: 10px; border: 1px solid #eee; }
 
-        /* 行程總覽列表樣式 */
-        .summary-list { list-style: none; padding: 0; margin: 0; }
-        .summary-list li { padding: 10px 0; border-bottom: 1px dashed #eee; font-size: 0.95rem; }
-        .summary-list li:last-child { border-bottom: none; }
-        .dot { color: var(--dark-blue); margin-right: 8px; }
+        /* 行程時間軸樣式 */
+        .timeline { padding-left: 5px; }
+        .t-item { border-left: 2px solid var(--primary); padding: 0 0 20px 20px; position: relative; }
+        .t-item::before { content: ''; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--dark-blue); }
+        .t-time { font-weight: bold; color: var(--dark-blue); font-size: 0.9rem; margin-right: 8px; background: #eef9ff; padding: 2px 8px; border-radius: 10px; }
+        .t-desc { display: block; margin-top: 5px; font-size: 0.95rem; }
+        .t-note { font-size: 0.85rem; color: #888; display: block; margin-top: 3px; background: #fff9f9; padding: 5px; border-radius: 5px; }
+        .t-sub { color: #d63384; font-weight: 500; }
 
         .nav {
             position: fixed; bottom: 0; width: 100%; background: rgba(255,255,255,0.98);
             display: flex; border-top: 1px solid #eee; backdrop-filter: blur(10px); z-index: 1000;
         }
-        .nav-item {
-            flex: 1; text-align: center; padding: 12px 0;
-            color: #aaa; text-decoration: none; font-size: 0.65rem;
-        }
+        .nav-item { flex: 1; text-align: center; padding: 12px 0; color: #aaa; text-decoration: none; font-size: 0.65rem; }
         .nav-item.active { color: #2b67af; font-weight: bold; }
-        .nav-icon { display: block; font-size: 1.5rem; margin-bottom: 2px; }
+        .nav-icon { display: block; font-size: 1.4rem; margin-bottom: 2px; }
 
-        .btn {
-            display: inline-block; padding: 6px 15px; background: var(--dark-blue);
-            color: white; border-radius: 50px; text-decoration: none; font-size: 0.8rem; margin-top: 5px;
-        }
-        .timeline-item { border-left: 2px dashed var(--primary); padding: 0 0 20px 20px; position: relative; }
-        .timeline-item::before { content: '❄️'; position: absolute; left: -11px; top: 0; font-size: 12px; background: var(--bg); }
+        .summary-list { list-style: none; padding: 0; margin: 0; }
+        .summary-list li { padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">✈️❄️⛷️</div>
-    <h1>2026 北海道滑雪之旅</h1>
-    <p class="sub-header">3/13 - 3/21 ｜ 滑雪、美食、伴手禮</p>
+    <div style="font-size: 2rem;">✈️❄️⛷️</div>
+    <h1 style="margin:5px 0;">2026 北海道滑雪之旅</h1>
+    <p style="margin:0; font-size: 0.85rem; font-weight: bold; color: #666;">3/13 - 3/21 ｜ 滑雪、美食、伴手禮</p>
     <div id="countdown">載入中...</div>
 </header>
 
 <div id="home" class="page active">
     <div class="card">
-        <h2>✈️ 航班資訊</h2>
-        <div class="info-item">
+        <h2>✈️ 航班與住宿</h2>
+        <div style="font-size: 0.9rem; margin-bottom: 15px;">
             <span class="info-label">3/13 去程 BR0116</span>
             TPE 09:30 ➔ CTS 14:05
-        </div>
-        <div class="info-item">
-            <span class="info-label">3/21 回程 BR0115</span>
+            <span class="info-label" style="margin-top:10px;">3/21 回程 BR0115</span>
             CTS 15:20 ➔ TPE 19:05
         </div>
-    </div>
-
-    <div class="card">
-        <h2>🌦️ 即時氣象偵測</h2>
-        <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">點擊下方組件可查看詳細預報：</p>
-        
-        <div class="weather-box">
-            <a class="aw-widget-legal" href="https://www.accuweather.com/zh/jp/kutchan-cho/224213/weather-forecast/224213"></a>
-            <div id="awtd1734614144362" class="aw-widget-current"  data-locationkey="224213" data-unit="c" data-language="zh-tw" data-useip="false" data-remote-data="true" data-mode="current"></div>
-        </div>
-        
-        <div class="weather-box">
-            <a class="aw-widget-legal" href="https://www.accuweather.com/zh/jp/otaru-shi/224357/weather-forecast/224357"></a>
-            <div id="awtd1734614214561" class="aw-widget-current"  data-locationkey="224357" data-unit="c" data-language="zh-tw" data-useip="false" data-remote-data="true" data-mode="current"></div>
-        </div>
-
-        <div class="weather-box">
-            <a class="aw-widget-legal" href="https://www.accuweather.com/zh/jp/sapporo-shi/223983/weather-forecast/223983"></a>
-            <div id="awtd1734614241234" class="aw-widget-current"  data-locationkey="223983" data-unit="c" data-language="zh-tw" data-useip="false" data-remote-data="true" data-mode="current"></div>
-        </div>
-        <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
-    </div>
-
-    <div class="card">
-        <h2>🏨 住宿安排</h2>
-        <div class="info-item">
-            <span class="info-label">3/13 - 3/17 (二世谷)</span>
-            <strong>Skye Niseko</strong><br>
-            <span style="font-size: 0.8rem; color: #888;">〒044-0080 北海道虻田郡倶知安町 ニセコひらふ1条3丁目11-4</span><br>
-            <a href="tel:+81136556414" style="color: #2b67af; text-decoration: none;">📞 +81 136 55 6414</a>
-        </div>
-        <div class="info-item">
-            <span class="info-label">3/17 - 3/18 (小樽)</span>
-            <strong>Dormy Inn Premium Otaru</strong><br>
-            <span style="font-size: 0.8rem; color: #888;">〒047-0032 北海道小樽市稲穂3丁目9-1</span><br>
-            <a href="tel:+81134215489" style="color: #2b67af; text-decoration: none;">📞 +81 134 215 489</a>
-        </div>
-        <div class="info-item">
-            <span class="info-label">3/18 - 3/21 (札幌)</span>
-            <strong>The Gate Hotel Sapporo by Hulic</strong><br>
-            <span style="font-size: 0.8rem; color: #888;">〒060-0003 北海道札幌市中央区北三条西3-1-44</span><br>
-            <a href="tel:+81112064588" style="color: #2b67af; text-decoration: none;">📞 +81 112 064 588</a>
+        <hr style="border:0; border-top:1px solid #eee;">
+        <div style="font-size: 0.85rem;">
+            <p>🏨 <strong>Skye Niseko</strong><br><small>+81 136 55 6414</small></p>
+            <p>🏨 <strong>Dormy Inn Premium Otaru</strong><br><small>+81 134 215 489</small></p>
+            <p>🏨 <strong>The Gate Hotel Sapporo</strong><br><small>+81 112 064 588</small></p>
         </div>
     </div>
 
     <div class="card">
         <h2>📅 行程安排總覽</h2>
         <ul class="summary-list">
-            <li><span class="dot">●</span> <strong>3/13(五)-3/17(二)</strong> 二世谷滑雪</li>
-            <li><span class="dot">●</span> <strong>3/17(二)-3/18(三)</strong> 放鬆小樽行</li>
-            <li><span class="dot">●</span> <strong>3/18(三)-3/20(五)</strong> 漫遊札幌市</li>
-            <li><span class="dot">●</span> <strong>3/21(六)</strong> 新千歲機場大採購</li>
+            <li>🔵 <strong>3/13(五)-3/17(二)</strong> 二世谷滑雪</li>
+            <li>🌸 <strong>3/17(二)-3/18(三)</strong> 放鬆小樽行</li>
+            <li>🏙️ <strong>3/18(三)-3/20(五)</strong> 漫遊札幌市</li>
+            <li>✈️ <strong>3/21(六)</strong> 新千歲機場大採購</li>
         </ul>
+    </div>
+
+    <div class="card">
+        <h2>🌦️ AccuWeather 即時氣象</h2>
+        <div class="weather-box"><div id="awtd1" class="aw-widget-current" data-locationkey="224213" data-unit="c" data-language="zh-tw" data-mode="current"></div></div>
+        <div class="weather-box"><div id="awtd2" class="aw-widget-current" data-locationkey="224357" data-unit="c" data-language="zh-tw" data-mode="current"></div></div>
+        <div class="weather-box"><div id="awtd3" class="aw-widget-current" data-locationkey="223983" data-unit="c" data-language="zh-tw" data-mode="current"></div></div>
+        <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
     </div>
 </div>
 
 <div id="itA" class="page">
     <div class="card">
         <h2>⛷️ 3/13-3/17 二世谷滑雪</h2>
-        <div class="timeline-item">3/13 (五) 抵達、租借雪具、入住 Skye Niseko</div>
-        <div class="timeline-item">3/14-16 滑雪全日、享受飯店高級設施</div>
-        <div class="timeline-item">3/17 (二) 晨滑後退房前往小樽</div>
+        <div class="timeline">
+            <div class="t-item">
+                <span class="t-time">3/13 (五)</span>
+                <span class="t-desc">抵達北海道、超市採購、入住 <strong>Skye Niseko</strong></span>
+            </div>
+            <div class="t-item">
+                <span class="t-time">3/14-16</span>
+                <span class="t-desc">租借雪具、全日滑雪 🎿</span>
+                <span class="t-note">午餐：TBC<br>享受飯店高級設施、放鬆身心</span>
+            </div>
+            <div class="t-item">
+                <span class="t-time">3/17 (二)</span>
+                <span class="t-desc">09:00 早餐 ➔ 11:00 退房</span>
+                <span class="t-note">12:00 搭乘 Uber 前往小樽 (車程約 1.5hr)</span>
+            </div>
+        </div>
     </div>
 </div>
 
 <div id="itB" class="page">
     <div class="card">
         <h2>♨️ 3/17-3/18 放鬆小樽行</h2>
-        <div class="timeline-item">3/17 (二) 入住 Dormy Inn、體驗天然溫泉</div>
-        <div class="timeline-item">3/18 (三) 小樽音樂盒堂、堺町通散策、海鮮壽司</div>
+        <div class="timeline">
+            <div class="t-item">
+                <span class="t-time">3/17 (二)</span>
+                <span class="t-desc">入住 Dormy Inn、體驗天然溫泉</span>
+                <span class="t-note">
+                    逛街點：Snoopy 茶屋、小樽蒸汽鐘、LeTAO 總店、六花亭、音樂盒堂<br>
+                    活動：運河散步｜午餐/晚餐：TBC
+                </span>
+            </div>
+            <div class="t-item">
+                <span class="t-time">3/18 (三)</span>
+                <span class="t-desc">09:00 早餐 ➔ 10:30 退房 (行李寄放)</span>
+                <span class="t-desc">11:00 前往<strong>小樽水族館</strong></span>
+                <span class="t-note">
+                    🚌 巴士：中央通(小樽市#10) ➔ 終點站 (25分)<br>
+                    🚕 Uber：約 15-20 分鐘<br>
+                    <span class="t-sub">🐧 企鵝走路時段：11:30、12:40、14:40</span>
+                </span>
+                <span class="t-desc">16:00 返回飯店取行李 ➔ 17:00 出發札幌</span>
+                <span class="t-note">機場快線 (約 1hr) ➔ 入住 The Gate Hotel Sapporo</span>
+            </div>
+        </div>
     </div>
 </div>
 
 <div id="itC" class="page">
     <div class="card">
         <h2>🏙️ 3/18-3/20 漫遊札幌市</h2>
-        <div class="timeline-item">3/18 (三) 抵達 The Gate Hotel、札幌車站周邊</div>
-        <div class="timeline-item">3/19 (四) 狸小路大採買、成吉思汗烤羊肉</div>
-        <div class="timeline-item">3/20 (五) 白色戀人工廠 或 北海道神宮</div>
+        <div class="timeline">
+            <div class="t-item">
+                <span class="t-time">3/18 (三)</span>
+                <span class="t-desc">入住飯店、札幌車站周邊逛街、晚餐 TBC</span>
+            </div>
+            <div class="t-item">
+                <span class="t-time">3/19 (四)</span>
+                <span class="t-desc">10:00 早餐 ➔ 11:30 北海道大學散步</span>
+                <span class="t-note">銀杏大道雪景、參觀校園博物館</span>
+                <span class="t-desc">下午：大通公園、狸小路、地下街 (Pole Town)</span>
+                <span class="t-note">午餐：TBC ➔ <span class="t-sub">晚餐：成吉思汗烤羊肉</span></span>
+            </div>
+            <div class="t-item">
+                <span class="t-time">3/20 (五)</span>
+                <span class="t-desc">08:00 早餐 ➔ 09:30 出發<strong>円山動物園</strong></span>
+                <span class="t-note">🚇 大通站 ➔ 圓山公園站 (約 10 分鐘)</span>
+                <span class="t-desc">中午：討論是否前往護國神社 (步行 5-10分)</span>
+                <span class="t-desc">傍晚：白色戀人公園 (工廠展示、購物)</span>
+                <span class="t-note">午餐/晚餐：TBC</span>
+            </div>
+        </div>
     </div>
 </div>
 
 <div id="itD" class="page">
     <div class="card">
-        <h2>✈️ 3/21 歸途與機場採購</h2>
-        <div class="card" style="background: #fff9f9;">
-            <strong>機場必去：</strong> 國內線 2F 伴手禮、3F 哆啦A夢與拉麵道場
+        <h2>✈️ 3/21 新千歲機場採購</h2>
+        <p>最後一天享受機場美食與免稅購物！</p>
+        <div style="background: #fff9f9; padding: 15px; border-radius: 10px; font-size: 0.9rem;">
+            📍 機場快線前往新千歲 (建議 12:00 前抵達)<br>
+            🛒 必逛：國內線 2F 伴手禮、3F 哆啦A夢/拉麵道場
         </div>
-        <div class="info-item" style="margin-top: 15px;">
-            回程 BR0115 | 15:20 CTS ➔ 19:05 TPE
+        <div class="card" style="margin-top: 15px; border: 1px solid #ffcaca;">
+            回程航班 <strong>BR0115</strong> | 15:20 CTS ➔ 19:05 TPE
         </div>
     </div>
 </div>
@@ -201,27 +212,22 @@
 
 <script>
     function updateCountdown() {
-        const targetDate = new Date("2026/03/13 09:30:00").getTime();
+        const target = new Date("2026/03/13 09:30:00").getTime();
         const now = new Date().getTime();
-        const gap = targetDate - now;
-        if (gap < 0) {
-            document.getElementById("countdown").innerText = "出發啦！⛷️";
-            return;
-        }
+        const gap = target - now;
+        if (gap < 0) { document.getElementById("countdown").innerText = "旅程進行中！⛷️"; return; }
         const d = Math.floor(gap / (1000 * 60 * 60 * 24));
         const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById("countdown").innerText = `距離出發還有：${d}天 ${h}時 ${m}分`;
+        document.getElementById("countdown").innerText = `距離出發：${d}天 ${h}時 ${m}分`;
     }
-    setInterval(updateCountdown, 60000);
-    updateCountdown();
+    setInterval(updateCountdown, 60000); updateCountdown();
 
     function showPage(pageId, elmnt) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        elmnt.classList.add('active');
-        window.scrollTo(0,0);
+        elmnt.classList.add('active'); window.scrollTo(0,0);
     }
 </script>
 
